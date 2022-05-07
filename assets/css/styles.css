@@ -1,0 +1,105 @@
+/* CSS HEX */
+
+:root {
+    --pink: #ffc1cfff;
+    --tea-green: #e8ffb7ff;
+    --bright-lilac: #e2a0ffff;
+    --blizzard-blue: #c4f5fcff;
+    --magic-mint: #b7ffd8ff;
+  }
+  
+  body {
+    font-family: "Open Sans", sans-serif;
+    font-size: 16px;
+    line-height: 1;
+  }
+  
+  textarea {
+    background: transparent;
+    border: none;
+    resize: none;
+    color: #000000;
+    border-left: 1px solid green;
+    padding: 10px;
+   
+  }
+  
+  .jumbotron {
+    text-align: center;
+    background-color: blizzard-blue;
+    color: black;
+    border-radius: 0;
+    border-bottom: 10px solid black;
+    border: yellow solid 1px;
+    background-color: aqua;
+   
+  }
+  
+  .description {
+    white-space: pre-wrap;
+    border: solid orange 2px;
+    background-color: yellowgreen;
+  }
+  
+  .time-block {
+    text-align: center;
+    border-radius: 15px;
+    border: solid red 2px;
+  }
+  .container {
+    display: flex;
+    flex-direction: row;
+    width: 80%;
+    text-align: center;
+    margin: auto;
+    border: solid 1px red;
+
+  }
+  
+  .row {
+    white-space: pre-wrap;
+    height: 80px;
+    border-top: 1px solid white;
+    border: solid red 2px;
+  }
+  
+  .hour {
+    background-color: #ffffff;
+    color: #000000;
+    border-top: 1px dashed #000000;
+    border: solid red 2px;
+  }
+  
+  .past {
+    background-color: var(--magic-mint);
+    color: white;
+    border: solid red 2px;
+  }
+  
+  .present {
+    background-color: var(--pink);
+    color: white;
+    border: solid red 2px;
+  }
+  
+  .future {
+    background-color: var(--tea-green);
+    color: white;
+    border: solid violet 2px;
+  }
+  
+  .saveBtn {
+    border-left: 1px solid black;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    background-color: #06aed5;
+    color: white;
+    border: solid blue 2px;
+  }
+  
+  .saveBtn i:hover {
+    font-size: 20px;
+    transition: all 0.3s ease-in-out;
+    border: solid red 2px;
+  }
+  
