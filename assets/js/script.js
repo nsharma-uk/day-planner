@@ -1,14 +1,14 @@
 //declare working hours array
 const workingHour = [
-  { timeLabel: "9am", key: 9 },
-  { timeLabel: "10am", key: 10 },
-  { timeLabel: "11am", key: 11 },
-  { timeLabel: "12pm", key: 12 },
-  { timeLabel: "1pm", key: 13 },
-  { timeLabel: "2pm", key: 14 },
-  { timeLabel: "3pm", key: 15 },
-  { timeLabel: "4pm", key: 16 },
-  { timeLabel: "5pm", key: 17 },
+  { label: "9am", key: 9 },
+  { label: "10am", key: 10 },
+  { label: "11am", key: 11 },
+  { label: "12pm", key: 12 },
+  { label: "1pm", key: 13 },
+  { label: "2pm", key: 14 },
+  { label: "3pm", key: 15 },
+  { label: "4pm", key: 16 },
+  { label: "5pm", key: 17 },
 ];
 
 //render date using moment.js in header
@@ -24,18 +24,19 @@ const renderTimeBlocks = () => {
   const renderTimeBlock = (workingHour) => {
     console.log(workingHour);
     //create time blocks
-    const timeBlock = `<div class="row p-2">
-    <!-- div for the text: 9am -->
-    <div class="col-md-1 col-sm-12 text-center my-1 d-flex flex-column justify-content-center">9am</div>
-    <!-- a div for where you write your text -->
-    <textarea class="col-md-9 col-sm-12" rows="3"></textarea>
-    <!-- a button to press save -->
+    const timeBlock = `<div class="row p-2 future my 2">
+    div class="col-md-1 col-sm-12 text-center my-1 d-flex flex-column justify-content-center">${
+      workingHour.label
+    }</div>
+    <textarea class="col-md-9 col-sm-12" rows="3">${getEventForTimeBlock(
+      workingHour.key
+    )}</textarea>
     <div class="col-md-2 col-sm-12 text-center my-1 d-flex flex-column justify-content-center">
       <button type="button" class="btn btn-success">Save</button>
     </div>`;
 
-    //append to parent  timeblocks
-    renderTimeBlocks.append(timeBlock);
+    //append to parent time block
+    renderTimeBlocks.append(timeblock);
   };
 
   workingHours.forEach(renderTimeBlock);
@@ -46,3 +47,17 @@ const onReady = () => {
 };
 
 $(document).ready(onReady);
+
+const getClassName = (workingHour) => {
+  const currentHour = moment().hour();
+  //if workingHour is present
+  if (workingHour === currentHour) {
+    return "present";
+  }
+  //if workingHour is future
+  if (workingHour > currentHour) {
+    return "future";
+  }
+  return "past";
+  //else past
+};
