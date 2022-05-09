@@ -18,60 +18,6 @@ const renderDate = () => {
   $("#currentDay").append(currentDate);
 };
 
- 
-
-const getEventForTimeBlock = (workingHour) => {};
-
-const renderTimeBlocks = () => {
-  //for each working hour create and append time block time blocks
-
-  const renderTimeBlock = (workingHour) => {
-    console.log(workingHour);
-    //create time blocks
-    const timeBlocks = $("#time-block");
-    const timeBlock = `<div class="row p-2 future my 2 ${getClassName(
-      workingHour
-    )}">
-    <div class="col-md-1 col-sm-12 text-center my-1 d-flex flex-column justify-content-center">${
-      workingHour.label
-    }</div>
-    <textarea class="col-md-9 col-sm-12" rows="3">${getEventForTimeBlock(
-      workingHour.key
-    )}</textarea>
-    <div class="col-md-2 col-sm-12 text-center my-1 d-flex flex-column justify-content-center">
-      <button type="button" class="btn btn-success" id="saveBtn">Save</button>
-    </div>`;
-
-    //append to parent time block
-    renderTimeBlocks.append(timeBlock);
-  };
-
-  workingHours.forEach(renderTimeBlock);
-};
-
-const onReady = () => {
-  renderDate();
-  renderTimeBlocks();
-};
-
-$(document).ready(onReady);
-
-const getClassName = (workingHour) => {
-  const currentHour = moment().hour();
-  //if workingHour is present
-  if (workingHour === currentHour) {
-    return "present";
-  }
-  //if workingHour is future
-  if (workingHour > currentHour) {
-    return "future";
-  }
-  return "past";
-  //else past
-};
-
-
-
 const readFromLocalStorage = (key, defaultValue) => {
   // get from LS using key name
   const dataFromLS = localStorage.getItem(key);
@@ -92,5 +38,56 @@ const writeToLocalStorage = (key, value) => {
 
   // set stringified value to LS for key name
   localStorage.setItem(key, stringifiedValue);
+};
+
+const getEventForTimeBlock = (workingHours) => {};
+
+const renderTimeBlocks = () => {
+  //for each working hour create and append time block time blocks
+
+  const renderTimeBlock = (workingHours) => {
+    console.log(workingHours);
+    //create time blocks dynamically
+    const timeBlocks = $("#time-block");
+    const timeBlock = `<div class="row p-2 future my 2 ${getClassName(
+      workingHours
+    )}">
+    <div class="col-md-1 col-sm-12 text-center my-1 d-flex flex-column justify-content-center">${
+      workingHours.label
+    }</div>
+    <textarea class="col-md-9 col-sm-12" rows="3">${getEventForTimeBlock(
+      workingHours.key
+    )}</textarea>
+    <div class="col-md-2 col-sm-12 text-center my-1 d-flex flex-column justify-content-center">
+      <button type="button" class="btn btn-success">Save</button>
+    </div>`;
+
+    //append to parent time block
+    timeBlocks.append(timeBlock);
+  };
+
+  workingHours.forEach(renderTimeBlock);
+};
+
+const onReady = () => {
+  renderDate();
+  renderTimeBlocks();
+};
+
+$(document).ready(onReady);
+
+const getClassName = (workingHours) => {
+  const currentHour = moment().hour();
+  //if workingHour is present
+  if (workingHours === currentHour) {
+    return "present";
+  }
+  //if workingHours is future
+  if (workingHours > currentHour) {
+    return "future";
+  }
+  //else workingHours is past
+  return "past";
+  //else past
 };
 
