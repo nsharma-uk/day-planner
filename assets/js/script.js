@@ -79,8 +79,13 @@ const handleSave = (event) => {
   const target = $(event.target);
   if (target.is("BUTTON")) {
     const key = target.attr("data-hour");
-    const value = $(`textarea[data-info="${key}"]`).val();
+    const value = $(`textarea[data-info="${key}"]`).val().trim();
     console.log(value);
+    const planner = readFromLocalStorage("planner", {});
+
+    planner[key] = value;
+
+    writeToLocalStorage("planner", planner);
   }
 };
 
