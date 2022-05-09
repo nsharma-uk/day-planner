@@ -1,5 +1,5 @@
 //declare working hours array
-const workingHour = [
+const workingHours = [
   { label: "9am", key: 9 },
   { label: "10am", key: 10 },
   { label: "11am", key: 11 },
@@ -18,25 +18,32 @@ const renderDate = () => {
   $("#currentDay").append(currentDate);
 };
 
+ 
+
+const getEventForTimeBlock = (workingHour) => {};
+
 const renderTimeBlocks = () => {
   //for each working hour create and append time block time blocks
 
   const renderTimeBlock = (workingHour) => {
     console.log(workingHour);
     //create time blocks
-    const timeBlock = `<div class="row p-2 future my 2">
-    div class="col-md-1 col-sm-12 text-center my-1 d-flex flex-column justify-content-center">${
+    const timeBlocks = $("#time-block");
+    const timeBlock = `<div class="row p-2 future my 2 ${getClassName(
+      workingHour
+    )}">
+    <div class="col-md-1 col-sm-12 text-center my-1 d-flex flex-column justify-content-center">${
       workingHour.label
     }</div>
     <textarea class="col-md-9 col-sm-12" rows="3">${getEventForTimeBlock(
       workingHour.key
     )}</textarea>
     <div class="col-md-2 col-sm-12 text-center my-1 d-flex flex-column justify-content-center">
-      <button type="button" class="btn btn-success">Save</button>
+      <button type="button" class="btn btn-success" id="saveBtn">Save</button>
     </div>`;
 
     //append to parent time block
-    renderTimeBlocks.append(timeblock);
+    renderTimeBlocks.append(timeBlock);
   };
 
   workingHours.forEach(renderTimeBlock);
@@ -44,6 +51,7 @@ const renderTimeBlocks = () => {
 
 const onReady = () => {
   renderDate();
+  renderTimeBlocks();
 };
 
 $(document).ready(onReady);
@@ -61,3 +69,28 @@ const getClassName = (workingHour) => {
   return "past";
   //else past
 };
+
+
+
+const readFromLocalStorage = (key, defaultValue) => {
+  // get from LS using key name
+  const dataFromLS = localStorage.getItem(key);
+
+  // parse data from LS
+  const parsedData = JSON.parse(dataFromLS);
+
+  if (parsedData) {
+    return parsedData;
+  } else {
+    return defaultValue;
+  }
+};
+
+const writeToLocalStorage = (key, value) => {
+  // convert value to string
+  const stringifiedValue = JSON.stringify(value);
+
+  // set stringified value to LS for key name
+  localStorage.setItem(key, stringifiedValue);
+};
+
