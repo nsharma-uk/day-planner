@@ -44,22 +44,26 @@ const getEventForTimeBlock = (workingHours) => {};
 
 const renderTimeBlocks = () => {
   //for each working hour create and append time block time blocks
-
+  const timeBlocks = $("#time-block");
   const renderTimeBlock = (workingHours) => {
     console.log(workingHours);
     //create time blocks dynamically
-    const timeBlocks = $("#time-block");
+
     const timeBlock = `<div class="row p-2 future my 2 ${getClassName(
       workingHours
     )}">
     <div class="col-md-1 col-sm-12 text-center my-1 d-flex flex-column justify-content-center">${
       workingHours.label
     }</div>
-    <textarea class="col-md-9 col-sm-12" rows="3">${getEventForTimeBlock(
+    <textarea data-info=${
+      workingHours.key
+    } class="col-md-9 col-sm-12" rows="3">${getEventForTimeBlock(
       workingHours.key
     )}</textarea>
     <div class="col-md-2 col-sm-12 text-center my-1 d-flex flex-column justify-content-center">
-      <button type="button" class="btn btn-success">Save</button>
+      <button type="button" data-hour=${
+        workingHours.key
+      } class="btn btn-success">Save</button>
     </div>`;
 
     //append to parent time block
@@ -67,14 +71,18 @@ const renderTimeBlocks = () => {
   };
 
   workingHours.forEach(renderTimeBlock);
+
+  timeBlocks.on("click", handleSave);
 };
 
-const onReady = () => {
-  renderDate();
-  renderTimeBlocks();
+const handleSave = (event) => {
+  const target = $(event.target);
+  if (target.is("BUTTON")) {
+    const key = target.attr("data-hour");
+    const value = $(`textarea[data-info="${key}"]`).val();
+    console.log(value);
+  }
 };
-
-$(document).ready(onReady);
 
 const getClassName = (workingHours) => {
   const currentHour = moment().hour();
@@ -91,3 +99,11 @@ const getClassName = (workingHours) => {
   //else past
 };
 
+//function to handle click on save buttons
+
+const onReady = () => {
+  renderDate();
+  renderTimeBlocks();
+};
+
+$(document).ready(onReady);
