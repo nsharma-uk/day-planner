@@ -67,7 +67,7 @@ const renderTimeBlocks = () => {
     <div class="col-md-2 col-sm-12 text-center my-1 d-flex flex-column justify-content-center">
       <button type="button" data-hour=${
         workingHours.key
-      } class=class="btn btn-outline-success">Save</button>
+      } class="btn btn-outline-success">Save</button>
     </div>`;
 
     //append to parent time block
