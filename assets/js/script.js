@@ -40,7 +40,11 @@ const writeToLocalStorage = (key, value) => {
   localStorage.setItem(key, stringifiedValue);
 };
 
-const getEventForTimeBlock = (workingHours) => {};
+const getEventForTimeBlock = (workingHours) => {
+  const planner = readFromLocalStorage("planner", {});
+
+  return planner[workingHours] || "";
+};
 
 const renderTimeBlocks = () => {
   //for each working hour create and append time block time blocks
@@ -63,14 +67,13 @@ const renderTimeBlocks = () => {
     <div class="col-md-2 col-sm-12 text-center my-1 d-flex flex-column justify-content-center">
       <button type="button" data-hour=${
         workingHours.key
-      } class="btn btn-success">Save</button>
+      } class=class="btn btn-outline-success">Save</button>
     </div>`;
 
     //append to parent time block
     timeBlocks.append(timeBlock);
   };
-
-  workingHours.forEach(renderTimeBlock);
+   workingHours.forEach(renderTimeBlock);
 
   timeBlocks.on("click", handleSave);
 };
