@@ -5,11 +5,7 @@ body {
 }
 
 textarea {
-  /*background: transparent;
-  border: none;*/
   resize: none;
-  /* color: #000000;*/
-
   padding: 15px;
 }
 
@@ -69,3 +65,39 @@ textarea {
   font-size: 20px;
   transition: all 0.3s ease-in-out;
 }
+
+/* Start of webpage footer styles */
+.footer {
+    text-align: center;
+    background-color: transparent;
+    color: #464646;
+    border-radius: 0;
+    border-top: solid #464646 2px;
+    margin-top: 40px;
+    padding:30px:
+   
+  }
+}
+.footer-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  color: var(--cultured-2);
+  padding:  30px;
+  justify-content: center;
+  align-items: center;
+}
+
+.social-icon {
+  color: var(--cultured-2);
+  transition: color 0.2s;
+  text-decoration: none;
+  font-size: 30px;
+ 
+  
+}
+
+
+
+/* End of webpage footer styles
+
