@@ -49,31 +49,31 @@ const getEventForTimeBlock = (workingHours) => {
 const renderTimeBlocks = () => {
   //for each working hour create and append time block time blocks
   const timeBlocks = $("#time-block");
-  const renderTimeBlock = (workingHours) => {
-    console.log(workingHours);
+  const renderTimeBlock = (workingHour) => {
+    console.log(workingHour);
     //create time blocks dynamically
 
-    const timeBlock = `<div class="row p-2 future my 2 ${getClassName(
-      workingHours
+    const timeBlock = `<div class="row p-2 my 2 ${getClassName(
+      workingHour.key
     )}">
     <div class="col-md-1 col-sm-12 text-center my-1 d-flex flex-column justify-content-center">${
-      workingHours.label
+      workingHour.label
     }</div>
     <textarea data-info=${
-      workingHours.key
+      workingHour.key
     } class="col-md-9 col-sm-12" rows="3">${getEventForTimeBlock(
-      workingHours.key
+      workingHour.key
     )}</textarea>
     <div class="col-md-2 col-sm-12 text-center my-1 d-flex flex-column justify-content-center">
       <button type="button" data-hour=${
-        workingHours.key
+        workingHour.key
       } class="btn btn-outline-success">Save</button>
     </div>`;
 
     //append to parent time block
     timeBlocks.append(timeBlock);
   };
-   workingHours.forEach(renderTimeBlock);
+  workingHours.forEach(renderTimeBlock);
 
   timeBlocks.on("click", handleSave);
 };
@@ -92,14 +92,15 @@ const handleSave = (event) => {
   }
 };
 
-const getClassName = (workingHours) => {
+const getClassName = (workingHour) => {
   const currentHour = moment().hour();
+
   //if workingHour is present
-  if (workingHours === currentHour) {
+  if (workingHour === currentHour) {
     return "present";
   }
   //if workingHours is future
-  if (workingHours > currentHour) {
+  if (workingHour > currentHour) {
     return "future";
   }
   //else workingHours is past
