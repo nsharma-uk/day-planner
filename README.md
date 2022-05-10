@@ -30,7 +30,7 @@ A simple calendar application that allows a user to save events for each hour of
 
 This browser app is for the employee with a busy schedule who wants to be able to add important events to a daily planner so that they are able to manage time effectively.
 
-Moment.js was used to validate and display dates and times. Using a combination of jQuery and Javascript, the time blocks of a typical working day's dynamically were adjusted so that each time block is colour coded to indicate whether it is in the past, present, or future.  The past is greyed out, present is in pale pink and future is shaded in green.
+Moment.js was used to validate and display dates and times. Using a combination of jQuery and Javascript, the time blocks of a typical working day's dynamically were adjusted so that each time block is colour coded to indicate whether it is in the past, present, or future. The past is greyed out, present is in pale pink and future is shaded in green.
 
 The user can input text into the form and click on the save button ensuring the text is saved and persists, even when the page is refreshed.
 
